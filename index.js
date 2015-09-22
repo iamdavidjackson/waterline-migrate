@@ -78,12 +78,12 @@ exports = module.exports = function(options) {
 	}
 
 	function logger(level, message) {
-		if (typeof message !== 'undefined' && message !== '' && 
-			typeof level !== 'undefined' && level !== '' && 
-			typeof options.logger !== 'undefined' && 
-			typeof options.logger[level] === 'function'
+		if (typeof options.logger !== 'undefined' &&
+			typeof options.logger[level] === 'function' && 
+			typeof message !== 'undefined' && message !== '' && 
+			typeof level !== 'undefined' && level !== ''
 		) {
-			logger[level](message);
+			options.logger[level](message);
 		}
 	}
 }
