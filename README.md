@@ -36,6 +36,46 @@ waterline.initialize(config, function(err, models) {
 });
 ```
 
+## Migrations
+
+Migrations can contain any code you like as long as they expose an "up" and "down" function that can be called.  The name of the file will be used to keep track of which migrations have been run and not so the name field here is only for logging.
+
+```
+'use strict';
+
+var Promise = require('bluebird');
+var winston = require('winston');
+
+var migration = {};
+module.exports = exports = migration;
+
+var name = '0001_test_migration';
+
+migration.up = function(models) {
+	winston.debug('Applying migration ' + name);
+	
+	return models.collections.config.create({
+			name: 'test',
+			value: 'test value',
+			data: {
+				test: 'works'
+			}
+		})
+		.then(function(model) {
+			winston.debug('Successfully applied migration ' + name);
+			return Promise.resolve();
+		})
+		.catch(function(e) {
+			winston.debug('Error applying migration ' + name);
+			return Promise.reject(e);
+		});
+};
+
+migration.down = function() {
+	console.log('running down function');
+};
+```
+
 ## Promises
 
 Waterline Migrate makes use of Promises via Bluebird so you can chain things together nicely like this.
