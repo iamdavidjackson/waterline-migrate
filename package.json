@@ -1,0 +1,39 @@
+{
+  "name": "waterline-migrate",
+  "version": "0.0.1",
+  "description": "Simple migration tool for Waterline ORM",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require test/support/env --reporter spec --check-leaks --bail test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamdavidjackson/waterline-migrate.git"
+  },
+  "dependencies": {
+    "bluebird": "^2.10.1",
+    "fs": "0.0.2",
+    "path": "^0.12.7",
+    "waterline": "^0.10.26"
+  },
+  "devDependencies": {
+    "istanbul": "0.3.20",
+    "mocha": "2.2.5"
+  },
+  "keywords": [
+    "sails",
+    "waterline",
+    "migrate",
+    "database",
+    "express",
+    "node"
+  ],
+  "author": "David Jackson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamdavidjackson/waterline-migrate/issues"
+  },
+  "homepage": "https://github.com/iamdavidjackson/waterline-migrate#readme"
+}
