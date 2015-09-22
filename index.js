@@ -67,7 +67,7 @@ exports = module.exports = function(options) {
 
 			return Promise.all(promises)
 				.then(function() {
-					logger.debug('Migration Complete');
+					logger('debug', 'Migration Complete');
 					return models;
 				})
 				.catch(function(e) {
