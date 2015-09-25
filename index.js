@@ -59,7 +59,7 @@ exports = module.exports = function(options) {
 				  			}
 				  		})
 				  		.catch(function(e) {
-				  			logger('error', 'An error occured while migrating the database.');
+				  			logger('error', 'An error occured while migrating the database.', e);
 				  			throw e;
 				  		});
 			  	}));
@@ -77,13 +77,17 @@ exports = module.exports = function(options) {
 
 	}
 
-	function logger(level, message) {
+	function logger(level, message, e) {
 		if (typeof options.logger !== 'undefined' &&
 			typeof options.logger[level] === 'function' && 
 			typeof message !== 'undefined' && message !== '' && 
 			typeof level !== 'undefined' && level !== ''
 		) {
-			options.logger[level](message);
+			if(typeof e !== 'undefined') {
+				options.logger[level](message, e);
+			} else {
+				options.logger[level](message);
+			}
 		}
 	}
 }
